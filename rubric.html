@@ -1,0 +1,418 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head id="Head1"><title>
+	Assignment 02 Marks
+</title><link rel="Stylesheet" type="text/css" href="/jscript/yahoo/container/assets/container.css" />
+<script type="text/javascript" language="javascript" src="/jscript/yahoo/yahoo/yahoo-min.js"></script>
+
+<script type="text/javascript" language="javascript" src="/jscript/yahoo/dom/dom-min.js"></script>
+
+<script type="text/javascript" language="javascript" src="/jscript/yahoo/event/event-min.js"></script>
+
+<script type="text/javascript" language="javascript" src="/jscript/yahoo/container/container-min.js"></script>
+
+<script type="text/javascript" language="javascript" src="/jscript/MenuPanel-min.js"></script>
+
+
+    <script type="text/javascript">
+
+    // -------------------------------------------------------------------------------------
+    // This page has multiple modes:
+    //
+    //   View     - will allow the rubric to be viewed only. Selection will be turned off
+    //              and the only control button will be close.
+    //
+    //   Create   - will allow selection and editing in a separate editing window. Control
+    //              buttons will include Next, Previous and Cancel. The title will indicate 
+    //              "Create"
+    //
+    //   Edit     - will allow selection and editing in a separate editing window. Control
+    //              buttons will include Next, Previous and Cancel. The title will indicate 
+    //              "Edit"
+    //
+    // -------------------------------------------------------------------------------------
+
+    </script>
+    <style type="text/css">
+        td.rubricHeader { text-align:center; background-color:#9A9A9A; color: White; border-top:solid 1px #000000; border-left:solid 1px #000000; border-bottom:solid 1px #000000 }
+        td.rubricAchievementHeader { text-align:center; background-color:#E6E6E6; color: Black; border-left: solid 1px #000000; border-bottom: solid 1px #000000; font-size:0.85em; }
+        td.gridcell { border-left: solid 1px #000000; border-bottom: solid 1px #000000; font-size:0.8em; }
+    </style>
+<script type="text/javascript" language="javascript" src="/JScript/HelpPopup-min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/AngelThemes/Stylesheets/Conestoga_New_Blue.css" /><link rel="stylesheet" type="text/css" href="/AngelThemes/Stylesheets/Conestoga_New_Blue.css" /><SCRIPT LANGUAGE="JavaScript">if(!run){ document.write('<SCRI' + 'PT LANGUAGE="JavaScript" src="/jscript/Localization-min.js"><\/SCRIPT>'); var run = true; }</SCRIPT><script type="text/javascript" language="javascript">
+if (window.ActiveXObject && !window.XMLHttpRequest) {
+  window.XMLHttpRequest = function() {
+    var msxmls = new Array('Msxml2.XMLHTTP.5.0','Msxml2.XMLHTTP.4.0','Msxml2.XMLHTTP.3.0','Msxml2.XMLHTTP','Microsoft.XMLHTTP');
+    for (var i = 0; i < msxmls.length; i++) { try { return new ActiveXObject(msxmls[i]); } catch (e) { } }
+    return null;
+  };
+}
+top.window.sectionCheck = {
+		pageSection:function() { return 'PROG3100-102-13W-1'; },
+       cookieSection:function() { 
+               // cookies are separated by semicolons
+               var aCookie = document.cookie.split("; ");
+               for (var i=0; i < aCookie.length; i++)
+               {
+                   // a name/value pair (a crumb) is separated by an equal sign
+                   var aCrumb = aCookie[i].split("=");
+                   if ("AngelSection" == aCrumb[0] || "AngelSync" == aCrumb[0]){ //sectionid is in angelsection or angelsync cookie for 7.4
+       	            return decodeURIComponent(aCookie[i]).replace(/^.*Values\=([^\^]*)[\^]?.*$/gi, '$1');
+                   }
+               }
+               return "";
+           },
+		reactivate:function() { 
+				var div = top.window.document.getElementById('invalidSection');
+				var sURL = '/api/v1.0/default.asp?APIACTION=SECTION_ENTER&SECTION=PROG3100-102-13W-1';
+				var oXMLHTTP = new XMLHttpRequest;
+				oXMLHTTP.open( 'GET', sURL, false );
+				oXMLHTTP.send('');
+               results = oXMLHTTP.responseText;
+               if (results.search('Not authenticated')!= -1 ){
+               sURL = '/default.asp' ;
+               if (/Firefox[\/\s](\d+\.\d+)/.test(navigator.userAgent)){ 
+               top.window.location.href = sURL;}
+               else {top.window.location.href(sURL);}}
+			},
+		timer:null,
+		check:function() {
+		    try{
+			    var div = top.window.document.getElementById('invalidSection');
+			    var cookie = top.window.sectionCheck.cookieSection();
+			    var sectionId = top.window.sectionCheck.pageSection(); 
+			    if (!div && cookie && (cookie != sectionId && cookie != encodeURIComponent(sectionId))&& sectionId != '') { 
+			    	var div = top.window.document.createElement('div');
+			    	div.id = 'invalidSection';
+                   div.innerHTML = "<div id=\"invalidSectionPanel\"><p>This section is not currently active.</p><p><a href=\"javascript:void(top.window.sectionCheck.reactivate())\">Click to Reactivate</a></p></div>";
+			    	top.window.document.body.appendChild(div);
+			    } else if (div && (cookie==sectionId)) {
+			    	top.window.document.body.removeChild(div);
+			    }
+		    }catch(e){
+		        if (e.number != -2146823277) throw e; //supress function not found (window may have closed)
+		    }
+			return;
+		}
+	}
+	top.window.sectionCheck.timer = setInterval(top.window.sectionCheck.check, 1000);
+</script>
+</head>
+<body>
+    <div>
+        <form name="form1" method="post" action="ReviewRubric.aspx?rubricId=8d5f990c-06d4-483f-b62a-c716a80c3402&amp;pageMode=View&amp;PointsPossible=15.0000000000" id="form1">
+<div>
+<input type="hidden" name="hiddenReturnUrl" id="hiddenReturnUrl" value="/Section/Content/Dropbox.aspx" />
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTE3NTYxODY3MDYPZBYEAgEPZBYCZg9kFgJmDxYCHgRUZXh0BRNBc3NpZ25tZW50IDAyIE1hcmtzZAIDD2QWCgILDw8WAh8ABRNBc3NpZ25tZW50IDAyIE1hcmtzZGQCDQ8WBB8ABQIxNR4HVmlzaWJsZWdkAg4PFgIfAWhkAg8PFgIeCWlubmVyaHRtbAXIOzx0YWJsZSBib3JkZXI9MCBjZWxscGFkZGluZz0wIGNlbGxzcGFjaW5nPTAgc3R5bGU9IndpZHRoOjEwMCU7IGJvcmRlci1yaWdodDogc29saWQgMXB4ICMwMDAwMDAiPjx0cj48dGQgc3R5bGU9IndpZHRoOjEwJSIgY2xhc3M9InJ1YnJpY0hlYWRlciIgc3R5bGU9InRleHQtYWxpZ246dG9wIj48c3Ryb25nPkNyaXRlcmlhPC9zdHJvbmc+PC90ZD48dGQgY29sc3Bhbj0iMiIgc3R5bGU9IndpZHRoOjkwJSIgY2xhc3M9InJ1YnJpY0hlYWRlciI+PHN0cm9uZz5BY2hpZXZlbWVudCBMZXZlbDwvc3Ryb25nPjwvZGl2PjwvdGQ+PC90cj48dHI+PHRkIHN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOiNDRENEQ0Q7IGJvcmRlci1sZWZ0OiBzb2xpZCAxcHggIzAwMDAwMDsgYm9yZGVyLWJvdHRvbTogc29saWQgMXB4ICMwMDAwMDAiPiZuYnNwOzwvdGQ+PHRkIGNsYXNzPSJydWJyaWNBY2hpZXZlbWVudEhlYWRlciIgdmFsaWduPSJ0b3AiPiAgPHN0cm9uZz5BY2hpZXZlbWVudCBMZXZlbCAxPC9zdHJvbmc+PC90ZD48dGQgY2xhc3M9InJ1YnJpY0FjaGlldmVtZW50SGVhZGVyIiB2YWxpZ249InRvcCI+ICA8c3Ryb25nPkFjaGlldmVtZW50IExldmVsIDI8L3N0cm9uZz48L3RkPjwvdHI+PHRyPiAgPHRkIGNsYXNzPSJydWJyaWNBY2hpZXZlbWVudEhlYWRlciIgdmFsaWduPSJ0b3AiPiAgPHN0cm9uZz5EaWNlOiBEaWNlIFJvbGwgU2ltdWxhdGlvbjwvc3Ryb25nPjwvdGQ+PHRkIHZhbGlnbj0idG9wIiBzdHlsZT0id2lkdGg6MTAlOyBoZWlnaHQ6MTAwJSIgY2xhc3M9ImdyaWRjZWxsIj48ZGl2PjxzcGFuIGlkPSJzcGFuUGVyY2VudFJvdzFDb2wxIj4wIDwvc3Bhbj5wb2ludHM8YnI+PHNwYW4gaWQ9InNwYW5EZXNjUm93MUNvbDEiPkluY29tcGxldGU8L3NwYW4+PC9kaXY+PC90ZD48dGQgdmFsaWduPSJ0b3AiIHN0eWxlPSJ3aWR0aDoxMCU7IGhlaWdodDoxMDAlIiBjbGFzcz0iZ3JpZGNlbGwiPjxkaXY+PHNwYW4gaWQ9InNwYW5QZXJjZW50Um93MUNvbDIiPjEuNSA8L3NwYW4+cG9pbnRzPGJyPjxzcGFuIGlkPSJzcGFuRGVzY1JvdzFDb2wyIj5BcHByb3ByaWF0ZSB1c2Ugb2YgcmFuZG9tIG51bWJlciBnZW5lcmF0aW9uIHRvIHNpbXVsYXRlIHRoZSByb2xsaW5nIG9mIHR3byBkaWNlLjwvc3Bhbj48L2Rpdj48L3RkPjwvdHI+PHRyPiAgPHRkIGNsYXNzPSJydWJyaWNBY2hpZXZlbWVudEhlYWRlciIgdmFsaWduPSJ0b3AiPiAgPHN0cm9uZz5EaWNlOiBUcmFjayBSb2xsIENvdW50PC9zdHJvbmc+PC90ZD48dGQgdmFsaWduPSJ0b3AiIHN0eWxlPSJ3aWR0aDoxMCU7IGhlaWdodDoxMDAlIiBjbGFzcz0iZ3JpZGNlbGwiPjxkaXY+PHNwYW4gaWQ9InNwYW5QZXJjZW50Um93MUNvbDMiPjAgPC9zcGFuPnBvaW50czxicj48c3BhbiBpZD0ic3BhbkRlc2NSb3cxQ29sMyI+SW5jb21wbGV0ZTwvc3Bhbj48L2Rpdj48L3RkPjx0ZCB2YWxpZ249InRvcCIgc3R5bGU9IndpZHRoOjEwJTsgaGVpZ2h0OjEwMCUiIGNsYXNzPSJncmlkY2VsbCI+PGRpdj48c3BhbiBpZD0ic3BhblBlcmNlbnRSb3cxQ29sNCI+MC43NSA8L3NwYW4+cG9pbnRzPGJyPjxzcGFuIGlkPSJzcGFuRGVzY1JvdzFDb2w0Ij5EZW1vbnN0cmF0ZWQgYWJpbGl0eSB0byB0cmFjayB0aGUgZnJlcXVlbmNpZXMgb2YgdGhlIHJvbGwgcmVzdWx0cy48L3NwYW4+PC9kaXY+PC90ZD48L3RyPjx0cj4gIDx0ZCBjbGFzcz0icnVicmljQWNoaWV2ZW1lbnRIZWFkZXIiIHZhbGlnbj0idG9wIj4gIDxzdHJvbmc+RGljZTogQWRqdXN0YWJsZSBUb2xlcmFuY2U8L3N0cm9uZz48L3RkPjx0ZCB2YWxpZ249InRvcCIgc3R5bGU9IndpZHRoOjEwJTsgaGVpZ2h0OjEwMCUiIGNsYXNzPSJncmlkY2VsbCI+PGRpdj48c3BhbiBpZD0ic3BhblBlcmNlbnRSb3cxQ29sNSI+MCA8L3NwYW4+cG9pbnRzPGJyPjxzcGFuIGlkPSJzcGFuRGVzY1JvdzFDb2w1Ij5JbmNvbXBsZXRlPC9zcGFuPjwvZGl2PjwvdGQ+PHRkIHZhbGlnbj0idG9wIiBzdHlsZT0id2lkdGg6MTAlOyBoZWlnaHQ6MTAwJSIgY2xhc3M9ImdyaWRjZWxsIj48ZGl2PjxzcGFuIGlkPSJzcGFuUGVyY2VudFJvdzFDb2w2Ij4wLjc1IDwvc3Bhbj5wb2ludHM8YnI+PHNwYW4gaWQ9InNwYW5EZXNjUm93MUNvbDYiPlRvbGVyYW5jZSBtdXN0IGJlIGFkanVzdGFibGUsIGFuZCB0aGUgcmVzdWx0cyBzaG91bGQgcHJvdmUgdGhhdCB0aGUgYWRqdXN0bWVudCBpcyB3b3JraW5nLjwvc3Bhbj48L2Rpdj48L3RkPjwvdHI+PHRyPiAgPHRkIGNsYXNzPSJydWJyaWNBY2hpZXZlbWVudEhlYWRlciIgdmFsaWduPSJ0b3AiPiAgPHN0cm9uZz5EaWNlOiBSZXBvcnQgb24gQ29tcGxldGVkIEFuYWx5c2lzPC9zdHJvbmc+PC90ZD48dGQgdmFsaWduPSJ0b3AiIHN0eWxlPSJ3aWR0aDoxMCU7IGhlaWdodDoxMDAlIiBjbGFzcz0iZ3JpZGNlbGwiPjxkaXY+PHNwYW4gaWQ9InNwYW5QZXJjZW50Um93MUNvbDciPjAgPC9zcGFuPnBvaW50czxicj48c3BhbiBpZD0ic3BhbkRlc2NSb3cxQ29sNyI+SW5jb21wbGV0ZTwvc3Bhbj48L2Rpdj48L3RkPjx0ZCB2YWxpZ249InRvcCIgc3R5bGU9IndpZHRoOjEwJTsgaGVpZ2h0OjEwMCUiIGNsYXNzPSJncmlkY2VsbCI+PGRpdj48c3BhbiBpZD0ic3BhblBlcmNlbnRSb3cxQ29sOCI+MC43NSA8L3NwYW4+cG9pbnRzPGJyPjxzcGFuIGlkPSJzcGFuRGVzY1JvdzFDb2w4Ij5Tb21lIGZvcm0gb2YgcmVwb3J0IG11c3QgYmUgcHJlc2VudGVkIChlaXRoZXIgZ3JhcGggb3IgdGFibGUpIHdpdGggdGhlIHJlc3VsdHMgb2YgdGhlIGZyZXF1ZW5jaWVzLCB0aGVvcmV0aWNhbCBwcm9iYWJpbGl0aWVzLCBhbmQgZW1waXJpY2FsIHJlc3VsdHMuPC9zcGFuPjwvZGl2PjwvdGQ+PC90cj48dHI+ICA8dGQgY2xhc3M9InJ1YnJpY0FjaGlldmVtZW50SGVhZGVyIiB2YWxpZ249InRvcCI+ICA8c3Ryb25nPkNhcmRzOiBSRmFjdG9yPC9zdHJvbmc+PC90ZD48dGQgdmFsaWduPSJ0b3AiIHN0eWxlPSJ3aWR0aDoxMCU7IGhlaWdodDoxMDAlIiBjbGFzcz0iZ3JpZGNlbGwiPjxkaXY+PHNwYW4gaWQ9InNwYW5QZXJjZW50Um93MUNvbDkiPjAgPC9zcGFuPnBvaW50czxicj48c3BhbiBpZD0ic3BhbkRlc2NSb3cxQ29sOSI+SW5jb21wbGV0ZTwvc3Bhbj48L2Rpdj48L3RkPjx0ZCB2YWxpZ249InRvcCIgc3R5bGU9IndpZHRoOjEwJTsgaGVpZ2h0OjEwMCUiIGNsYXNzPSJncmlkY2VsbCI+PGRpdj48c3BhbiBpZD0ic3BhblBlcmNlbnRSb3cxQ29sMTAiPjAuNzUgPC9zcGFuPnBvaW50czxicj48c3BhbiBpZD0ic3BhbkRlc2NSb3cxQ29sMTAiPklkZW50aWZ5IGEgbWV0aG9kIG9mIGNhbGN1bGF0aW5nIHRoZSBSRmFjdG9yLjwvc3Bhbj48L2Rpdj48L3RkPjwvdHI+PHRyPiAgPHRkIGNsYXNzPSJydWJyaWNBY2hpZXZlbWVudEhlYWRlciIgdmFsaWduPSJ0b3AiPiAgPHN0cm9uZz5DYXJkczogU2h1ZmZsZSBhbmQgUmlmZmxlIFNpbXVsYXRpb248L3N0cm9uZz48L3RkPjx0ZCB2YWxpZ249InRvcCIgc3R5bGU9IndpZHRoOjEwJTsgaGVpZ2h0OjEwMCUiIGNsYXNzPSJncmlkY2VsbCI+PGRpdj48c3BhbiBpZD0ic3BhblBlcmNlbnRSb3cxQ29sMTEiPjAgPC9zcGFuPnBvaW50czxicj48c3BhbiBpZD0ic3BhbkRlc2NSb3cxQ29sMTEiPkluY29tcGxldGU8L3NwYW4+PC9kaXY+PC90ZD48dGQgdmFsaWduPSJ0b3AiIHN0eWxlPSJ3aWR0aDoxMCU7IGhlaWdodDoxMDAlIiBjbGFzcz0iZ3JpZGNlbGwiPjxkaXY+PHNwYW4gaWQ9InNwYW5QZXJjZW50Um93MUNvbDEyIj4yLjI1IDwvc3Bhbj5wb2ludHM8YnI+PHNwYW4gaWQ9InNwYW5EZXNjUm93MUNvbDEyIj5CZSBhYmxlIHRvIHNpbXVsYXRlIGEgc2h1ZmZsZSwgcmlmZmxlLCBhbmQgY29tYmluYXRpb24gb2Ygc2h1ZmZsZSBhbmQgcmlmZmxlLjwvc3Bhbj48L2Rpdj48L3RkPjwvdHI+PHRyPiAgPHRkIGNsYXNzPSJydWJyaWNBY2hpZXZlbWVudEhlYWRlciIgdmFsaWduPSJ0b3AiPiAgPHN0cm9uZz5DYXJkczogUmVwb3J0IG9uIFJlc3VsdHM8L3N0cm9uZz48L3RkPjx0ZCB2YWxpZ249InRvcCIgc3R5bGU9IndpZHRoOjEwJTsgaGVpZ2h0OjEwMCUiIGNsYXNzPSJncmlkY2VsbCI+PGRpdj48c3BhbiBpZD0ic3BhblBlcmNlbnRSb3cxQ29sMTMiPjAgPC9zcGFuPnBvaW50czxicj48c3BhbiBpZD0ic3BhbkRlc2NSb3cxQ29sMTMiPkluY29tcGxldGU8L3NwYW4+PC9kaXY+PC90ZD48dGQgdmFsaWduPSJ0b3AiIHN0eWxlPSJ3aWR0aDoxMCU7IGhlaWdodDoxMDAlIiBjbGFzcz0iZ3JpZGNlbGwiPjxkaXY+PHNwYW4gaWQ9InNwYW5QZXJjZW50Um93MUNvbDE0Ij4wLjc1IDwvc3Bhbj5wb2ludHM8YnI+PHNwYW4gaWQ9InNwYW5EZXNjUm93MUNvbDE0Ij5EaXNwbGF5IGEgcmVwb3J0IGluZGljYXRpbmcgdGhlIG51bWJlciBvZiBzaHVmZmxlcy9yaWZmbGVzL2NvbWJpbmF0aW9ucyBpdCB0b29rIHRvIHJlYWNoIHRoZSBSRmFjdG9yLjwvc3Bhbj48L2Rpdj48L3RkPjwvdHI+PHRyPiAgPHRkIGNsYXNzPSJydWJyaWNBY2hpZXZlbWVudEhlYWRlciIgdmFsaWduPSJ0b3AiPiAgPHN0cm9uZz5QZW5kdWx1bTogRm9ybXVsYTwvc3Ryb25nPjwvdGQ+PHRkIHZhbGlnbj0idG9wIiBzdHlsZT0id2lkdGg6MTAlOyBoZWlnaHQ6MTAwJSIgY2xhc3M9ImdyaWRjZWxsIj48ZGl2PjxzcGFuIGlkPSJzcGFuUGVyY2VudFJvdzFDb2wxNSI+MCA8L3NwYW4+cG9pbnRzPGJyPjxzcGFuIGlkPSJzcGFuRGVzY1JvdzFDb2wxNSI+SW5jb21wbGV0ZTwvc3Bhbj48L2Rpdj48L3RkPjx0ZCB2YWxpZ249InRvcCIgc3R5bGU9IndpZHRoOjEwJTsgaGVpZ2h0OjEwMCUiIGNsYXNzPSJncmlkY2VsbCI+PGRpdj48c3BhbiBpZD0ic3BhblBlcmNlbnRSb3cxQ29sMTYiPjAuNzUgPC9zcGFuPnBvaW50czxicj48c3BhbiBpZD0ic3BhbkRlc2NSb3cxQ29sMTYiPklkZW50aWZ5IHRoZSBmb3JtdWxhIHVzZWQgaW4gdGhlIHByb2dyYW0uPC9zcGFuPjwvZGl2PjwvdGQ+PC90cj48dHI+ICA8dGQgY2xhc3M9InJ1YnJpY0FjaGlldmVtZW50SGVhZGVyIiB2YWxpZ249InRvcCI+ICA8c3Ryb25nPlBlbmR1bHVtOiBSZWFsLVRpbWUgTW90aW9uPC9zdHJvbmc+PC90ZD48dGQgdmFsaWduPSJ0b3AiIHN0eWxlPSJ3aWR0aDoxMCU7IGhlaWdodDoxMDAlIiBjbGFzcz0iZ3JpZGNlbGwiPjxkaXY+PHNwYW4gaWQ9InNwYW5QZXJjZW50Um93MUNvbDE3Ij4wIDwvc3Bhbj5wb2ludHM8YnI+PHNwYW4gaWQ9InNwYW5EZXNjUm93MUNvbDE3Ij5JbmNvbXBsZXRlPC9zcGFuPjwvZGl2PjwvdGQ+PHRkIHZhbGlnbj0idG9wIiBzdHlsZT0id2lkdGg6MTAlOyBoZWlnaHQ6MTAwJSIgY2xhc3M9ImdyaWRjZWxsIj48ZGl2PjxzcGFuIGlkPSJzcGFuUGVyY2VudFJvdzFDb2wxOCI+Mi4yNSA8L3NwYW4+cG9pbnRzPGJyPjxzcGFuIGlkPSJzcGFuRGVzY1JvdzFDb2wxOCI+U21vb3RoIGFuZCBjb3JyZWN0IG1vdGlvbiBvZiB0aGUgcGVuZHVsdW0gaXMgZGVtb25zdHJhdGVkLiBUaGlzIGluY2x1ZGVzIHRoZSBjaGFuZ2VzIGluIGJlaGF2aW9yIGFzIHRoZSBhcm0gbGVuZ3RoIGFuZCBzdGFydCBwb3NpdGlvbiB2YXJ5Ljwvc3Bhbj48L2Rpdj48L3RkPjwvdHI+PHRyPiAgPHRkIGNsYXNzPSJydWJyaWNBY2hpZXZlbWVudEhlYWRlciIgdmFsaWduPSJ0b3AiPiAgPHN0cm9uZz5QZW5kdWx1bTogVmFyaWFibGUgQXJtIExlbmd0aCBhbmQgU3RhcnQgUG9zaXRpb248L3N0cm9uZz48L3RkPjx0ZCB2YWxpZ249InRvcCIgc3R5bGU9IndpZHRoOjEwJTsgaGVpZ2h0OjEwMCUiIGNsYXNzPSJncmlkY2VsbCI+PGRpdj48c3BhbiBpZD0ic3BhblBlcmNlbnRSb3cxQ29sMTkiPjAgPC9zcGFuPnBvaW50czxicj48c3BhbiBpZD0ic3BhbkRlc2NSb3cxQ29sMTkiPkluY29tcGxldGU8L3NwYW4+PC9kaXY+PC90ZD48dGQgdmFsaWduPSJ0b3AiIHN0eWxlPSJ3aWR0aDoxMCU7IGhlaWdodDoxMDAlIiBjbGFzcz0iZ3JpZGNlbGwiPjxkaXY+PHNwYW4gaWQ9InNwYW5QZXJjZW50Um93MUNvbDIwIj4wLjc1IDwvc3Bhbj5wb2ludHM8YnI+PHNwYW4gaWQ9InNwYW5EZXNjUm93MUNvbDIwIj5BbiBpbnRlcmZhY2UgbXVzdCBiZSBwcmVzZW50IHRvIGNoYW5nZSB0aGUgbGVuZ3RoIG9mIHRoZSBhcm0sIGFuZCB0aGUgc3RhcnQgcG9zaXRpb24uPC9zcGFuPjwvZGl2PjwvdGQ+PC90cj48dHI+ICA8dGQgY2xhc3M9InJ1YnJpY0FjaGlldmVtZW50SGVhZGVyIiB2YWxpZ249InRvcCI+ICA8c3Ryb25nPlBlbmR1bHVtOiBTb3VuZCBFZmZlY3RzPC9zdHJvbmc+PC90ZD48dGQgdmFsaWduPSJ0b3AiIHN0eWxlPSJ3aWR0aDoxMCU7IGhlaWdodDoxMDAlIiBjbGFzcz0iZ3JpZGNlbGwiPjxkaXY+PHNwYW4gaWQ9InNwYW5QZXJjZW50Um93MUNvbDIxIj4wIDwvc3Bhbj5wb2ludHM8YnI+PHNwYW4gaWQ9InNwYW5EZXNjUm93MUNvbDIxIj5JbmNvbXBsZXRlPC9zcGFuPjwvZGl2PjwvdGQ+PHRkIHZhbGlnbj0idG9wIiBzdHlsZT0id2lkdGg6MTAlOyBoZWlnaHQ6MTAwJSIgY2xhc3M9ImdyaWRjZWxsIj48ZGl2PjxzcGFuIGlkPSJzcGFuUGVyY2VudFJvdzFDb2wyMiI+MC43NSA8L3NwYW4+cG9pbnRzPGJyPjxzcGFuIGlkPSJzcGFuRGVzY1JvdzFDb2wyMiI+M0Qgc291bmQgZWZmZWN0cyBhcmUgaW1wbGVtZW50ZWQuPC9zcGFuPjwvZGl2PjwvdGQ+PC90cj48dHI+ICA8dGQgY2xhc3M9InJ1YnJpY0FjaGlldmVtZW50SGVhZGVyIiB2YWxpZ249InRvcCI+ICA8c3Ryb25nPkNvZGluZyBTdGFuZGFyZHM8L3N0cm9uZz48L3RkPjx0ZCB2YWxpZ249InRvcCIgc3R5bGU9IndpZHRoOjEwJTsgaGVpZ2h0OjEwMCUiIGNsYXNzPSJncmlkY2VsbCI+PGRpdj48c3BhbiBpZD0ic3BhblBlcmNlbnRSb3cxQ29sMjMiPjAgPC9zcGFuPnBvaW50czxicj48c3BhbiBpZD0ic3BhbkRlc2NSb3cxQ29sMjMiPkluY29tcGxldGU8L3NwYW4+PC9kaXY+PC90ZD48dGQgdmFsaWduPSJ0b3AiIHN0eWxlPSJ3aWR0aDoxMCU7IGhlaWdodDoxMDAlIiBjbGFzcz0iZ3JpZGNlbGwiPjxkaXY+PHNwYW4gaWQ9InNwYW5QZXJjZW50Um93MUNvbDI0Ij4yLjI1IDwvc3Bhbj5wb2ludHM8YnI+PHNwYW4gaWQ9InNwYW5EZXNjUm93MUNvbDI0Ij5TRVQgQ29kaW5nIFN0YW5kYXJkcyBhcmUgYWRoZXJlZCB0by4gVGhpcyBpbmNsdWRlcyBhcHByb3ByaWF0ZSB1c2Ugb2YgaGVhZGVycyBhbmQgZGVtb25zdHJhdGluZyBnb29kIE9PUCB0ZWNobmlxdWVzLjwvc3Bhbj48L2Rpdj48L3RkPjwvdHI+PHRyPiAgPHRkIGNsYXNzPSJydWJyaWNBY2hpZXZlbWVudEhlYWRlciIgdmFsaWduPSJ0b3AiPiAgPHN0cm9uZz5JbnN0YWxsZXJzPC9zdHJvbmc+PC90ZD48dGQgdmFsaWduPSJ0b3AiIHN0eWxlPSJ3aWR0aDoxMCU7IGhlaWdodDoxMDAlIiBjbGFzcz0iZ3JpZGNlbGwiPjxkaXY+PHNwYW4gaWQ9InNwYW5QZXJjZW50Um93MUNvbDI1Ij4wIDwvc3Bhbj5wb2ludHM8YnI+PHNwYW4gaWQ9InNwYW5EZXNjUm93MUNvbDI1Ij5JbmNvbXBsZXRlPC9zcGFuPjwvZGl2PjwvdGQ+PHRkIHZhbGlnbj0idG9wIiBzdHlsZT0id2lkdGg6MTAlOyBoZWlnaHQ6MTAwJSIgY2xhc3M9ImdyaWRjZWxsIj48ZGl2PjxzcGFuIGlkPSJzcGFuUGVyY2VudFJvdzFDb2wyNiI+MC43NSA8L3NwYW4+cG9pbnRzPGJyPjxzcGFuIGlkPSJzcGFuRGVzY1JvdzFDb2wyNiI+VGhlIHByb2dyYW1zIGFyZSBkZXBsb3llZCB1c2luZyBvbmUgb3IgbW9yZSBpbnN0YWxsZXJzLjwvc3Bhbj48L2Rpdj48L3RkPjwvdHI+PC90YWJsZT5kAhEPFgIfAWgWAmYPDxYCHwAFBFNhdmVkZGSv0wjYnv24o+QL6tGxDDQmU0Gdgg==" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['form1'];
+if (!theForm) {
+    theForm = document.form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="/WebResource.axd?d=Mp2pumGV85VtNP-Z2ZvOmXA30ERJTSKM67rlBVYiO06JMvM1Iq3fsI9X1JXLfwuWt0ZFhzLrqsDlPSUlBffB8zfi_681&amp;t=634935124333359255" type="text/javascript"></script>
+
+
+<script src="/ScriptResource.axd?d=0jMcXbJKyGgMPCKEfLabZ-j7HOvvY3f530_fHmzVW8pmxgXfeHSfNb6ydIx8U7JSjGqVle7SabQjlp83L0TLj9w5YE7qMJCygEXtjuOj4nScpZ3fpT3to0gC8Cc6DPnAxswlIsoPnLhvne0Ccla8bKNyJRmA-jwt8lUbIyPblaQWRl6j0&amp;t=79a68888" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=83TOXx1wNYY_xUHSOfUHT2GglQkizKRJw2aX15UXeXL0eKbXHEah89QPfLJaXvnql_omthm05AniVe1QZgkh34Ec2aqt9oQ-TW1Cb1cUdnvbPlcjy9vPAlGCTO67TFtnZXvfusQhwTe9BlwqQ2XY3RqAibI8WINy8GhKx15twUHgNwSW0&amp;t=79a68888" type="text/javascript"></script>
+<script src="ReviewRubric.aspx.js" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+var PageMethods = function() {
+PageMethods.initializeBase(this);
+this._timeout = 0;
+this._userContext = null;
+this._succeeded = null;
+this._failed = null;
+}
+PageMethods.prototype = {
+_get_path:function() {
+ var p = this.get_path();
+ if (p) return p;
+ else return PageMethods._staticInstance.get_path();},
+ClearSession:function(ids,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'ClearSession',false,{ids:ids},succeededCallback,failedCallback,userContext); },
+ClearSessionVariables:function(succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'ClearSessionVariables',false,{},succeededCallback,failedCallback,userContext); },
+PrintHtmlProcess:function(succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'PrintHtmlProcess',false,{},succeededCallback,failedCallback,userContext); }}
+PageMethods.registerClass('PageMethods',Sys.Net.WebServiceProxy);
+PageMethods._staticInstance = new PageMethods();
+PageMethods.set_path = function(value) { PageMethods._staticInstance.set_path(value); }
+PageMethods.get_path = function() { return PageMethods._staticInstance.get_path(); }
+PageMethods.set_timeout = function(value) { PageMethods._staticInstance.set_timeout(value); }
+PageMethods.get_timeout = function() { return PageMethods._staticInstance.get_timeout(); }
+PageMethods.set_defaultUserContext = function(value) { PageMethods._staticInstance.set_defaultUserContext(value); }
+PageMethods.get_defaultUserContext = function() { return PageMethods._staticInstance.get_defaultUserContext(); }
+PageMethods.set_defaultSucceededCallback = function(value) { PageMethods._staticInstance.set_defaultSucceededCallback(value); }
+PageMethods.get_defaultSucceededCallback = function() { return PageMethods._staticInstance.get_defaultSucceededCallback(); }
+PageMethods.set_defaultFailedCallback = function(value) { PageMethods._staticInstance.set_defaultFailedCallback(value); }
+PageMethods.get_defaultFailedCallback = function() { return PageMethods._staticInstance.get_defaultFailedCallback(); }
+PageMethods.set_path("/Section/RubricManager/ReviewRubric.aspx");
+PageMethods.ClearSession= function(ids,onSuccess,onFailed,userContext) {PageMethods._staticInstance.ClearSession(ids,onSuccess,onFailed,userContext); }
+PageMethods.ClearSessionVariables= function(onSuccess,onFailed,userContext) {PageMethods._staticInstance.ClearSessionVariables(onSuccess,onFailed,userContext); }
+PageMethods.PrintHtmlProcess= function(onSuccess,onFailed,userContext) {PageMethods._staticInstance.PrintHtmlProcess(onSuccess,onFailed,userContext); }
+//]]>
+</script>
+
+		<div>
+
+			<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWCQLLyvrSCgK8+e64BwKtvNy1CgL7++eDBwL0+4fYDQKF0NzBAgKq+cmEDQKhqcOaBgKq7PXWC7dLogsDfyfemzyTMF9MtgigjA5t" />
+		</div>
+            <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('scriptManager', document.getElementById('form1'));
+Sys.WebForms.PageRequestManager.getInstance()._updateControls([], [], [], 90);
+//]]>
+</script>
+
+            <input name="CurrentLocationField" type="hidden" id="CurrentLocationField" />
+            <input name="EditTextField" type="hidden" id="EditTextField" />
+            <input name="hiddenMaxRowsField" type="hidden" id="hiddenMaxRowsField" value="13" />
+            <input name="hiddenMaxColsField" type="hidden" id="hiddenMaxColsField" value="2" />
+            <input name="hiddenModeField" type="hidden" id="hiddenModeField" value="View" />
+            <input name="hiddenEditTitle" type="hidden" id="hiddenEditTitle" />
+            <input name="hiddenRowOrColField" type="hidden" id="hiddenRowOrColField" />
+            <input type="hidden" id="hidShowPrintDialog" value="" />
+            <input type="hidden" id="hidNewWeighting" value="False" />
+            <div id="divPrintError" style="display:none">An error occurred while printing the rubric.</div>
+            <a id="hiddenPdfPrintButton" href="javascript:__doPostBack('hiddenPdfPrintButton','')" style="display: none;"></a>
+            
+            <table width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td class="toolbarDiv" style="vertical-align:bottom; height:40px; width:20px;">
+                        <span class="toolbarSpan"><img id="imgRubricIcon" src="../../Images/Icons/iconRubric.png" style="border-width:0px;" />&nbsp;&nbsp;</span>
+                    </td>
+                    <td class="toolbarDiv" style="vertical-align:top;text-align:left;">
+                        <span class="toolbarSpan"><big><strong><span class="pageTitleSpan"><span id="PageTitle">Assignment 02 Marks</span></span></strong></big></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div>
+                            Points Possible&nbsp;
+                            15
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            
+            <br />
+            <div id="divRubricGrid" style="width:100%;overflow:auto"><table border=0 cellpadding=0 cellspacing=0 style="width:100%; border-right: solid 1px #000000"><tr><td style="width:10%" class="rubricHeader" style="text-align:top"><strong>Criteria</strong></td><td colspan="2" style="width:90%" class="rubricHeader"><strong>Achievement Level</strong></div></td></tr><tr><td style="background-color:#CDCDCD; border-left: solid 1px #000000; border-bottom: solid 1px #000000">&nbsp;</td><td class="rubricAchievementHeader" valign="top">  <strong>Achievement Level 1</strong></td><td class="rubricAchievementHeader" valign="top">  <strong>Achievement Level 2</strong></td></tr><tr>  <td class="rubricAchievementHeader" valign="top">  <strong>Dice: Dice Roll Simulation</strong></td><td valign="top" style="width:10%; height:100%" class="gridcell"><div><span id="spanPercentRow1Col1">0 </span>points<br><span id="spanDescRow1Col1">Incomplete</span></div></td><td valign="top" style="width:10%; height:100%" class="gridcell"><div><span id="spanPercentRow1Col2">1.5 </span>points<br><span id="spanDescRow1Col2">Appropriate use of random number generation to simulate the rolling of two dice.</span></div></td></tr><tr>  <td class="rubricAchievementHeader" valign="top">  <strong>Dice: Track Roll Count</strong></td><td valign="top" style="width:10%; height:100%" class="gridcell"><div><span id="spanPercentRow1Col3">0 </span>points<br><span id="spanDescRow1Col3">Incomplete</span></div></td><td valign="top" style="width:10%; height:100%" class="gridcell"><div><span id="spanPercentRow1Col4">0.75 </span>points<br><span id="spanDescRow1Col4">Demonstrated ability to track the frequencies of the roll results.</span></div></td></tr><tr>  <td class="rubricAchievementHeader" valign="top">  <strong>Dice: Adjustable Tolerance</strong></td><td valign="top" style="width:10%; height:100%" class="gridcell"><div><span id="spanPercentRow1Col5">0 </span>points<br><span id="spanDescRow1Col5">Incomplete</span></div></td><td valign="top" style="width:10%; height:100%" class="gridcell"><div><span id="spanPercentRow1Col6">0.75 </span>points<br><span id="spanDescRow1Col6">Tolerance must be adjustable, and the results should prove that the adjustment is working.</span></div></td></tr><tr>  <td class="rubricAchievementHeader" valign="top">  <strong>Dice: Report on Completed Analysis</strong></td><td valign="top" style="width:10%; height:100%" class="gridcell"><div><span id="spanPercentRow1Col7">0 </span>points<br><span id="spanDescRow1Col7">Incomplete</span></div></td><td valign="top" style="width:10%; height:100%" class="gridcell"><div><span id="spanPercentRow1Col8">0.75 </span>points<br><span id="spanDescRow1Col8">Some form of report must be presented (either graph or table) with the results of the frequencies, theoretical probabilities, and empirical results.</span></div></td></tr><tr>  <td class="rubricAchievementHeader" valign="top">  <strong>Cards: RFactor</strong></td><td valign="top" style="width:10%; height:100%" class="gridcell"><div><span id="spanPercentRow1Col9">0 </span>points<br><span id="spanDescRow1Col9">Incomplete</span></div></td><td valign="top" style="width:10%; height:100%" class="gridcell"><div><span id="spanPercentRow1Col10">0.75 </span>points<br><span id="spanDescRow1Col10">Identify a method of calculating the RFactor.</span></div></td></tr><tr>  <td class="rubricAchievementHeader" valign="top">  <strong>Cards: Shuffle and Riffle Simulation</strong></td><td valign="top" style="width:10%; height:100%" class="gridcell"><div><span id="spanPercentRow1Col11">0 </span>points<br><span id="spanDescRow1Col11">Incomplete</span></div></td><td valign="top" style="width:10%; height:100%" class="gridcell"><div><span id="spanPercentRow1Col12">2.25 </span>points<br><span id="spanDescRow1Col12">Be able to simulate a shuffle, riffle, and combination of shuffle and riffle.</span></div></td></tr><tr>  <td class="rubricAchievementHeader" valign="top">  <strong>Cards: Report on Results</strong></td><td valign="top" style="width:10%; height:100%" class="gridcell"><div><span id="spanPercentRow1Col13">0 </span>points<br><span id="spanDescRow1Col13">Incomplete</span></div></td><td valign="top" style="width:10%; height:100%" class="gridcell"><div><span id="spanPercentRow1Col14">0.75 </span>points<br><span id="spanDescRow1Col14">Display a report indicating the number of shuffles/riffles/combinations it took to reach the RFactor.</span></div></td></tr><tr>  <td class="rubricAchievementHeader" valign="top">  <strong>Pendulum: Formula</strong></td><td valign="top" style="width:10%; height:100%" class="gridcell"><div><span id="spanPercentRow1Col15">0 </span>points<br><span id="spanDescRow1Col15">Incomplete</span></div></td><td valign="top" style="width:10%; height:100%" class="gridcell"><div><span id="spanPercentRow1Col16">0.75 </span>points<br><span id="spanDescRow1Col16">Identify the formula used in the program.</span></div></td></tr><tr>  <td class="rubricAchievementHeader" valign="top">  <strong>Pendulum: Real-Time Motion</strong></td><td valign="top" style="width:10%; height:100%" class="gridcell"><div><span id="spanPercentRow1Col17">0 </span>points<br><span id="spanDescRow1Col17">Incomplete</span></div></td><td valign="top" style="width:10%; height:100%" class="gridcell"><div><span id="spanPercentRow1Col18">2.25 </span>points<br><span id="spanDescRow1Col18">Smooth and correct motion of the pendulum is demonstrated. This includes the changes in behavior as the arm length and start position vary.</span></div></td></tr><tr>  <td class="rubricAchievementHeader" valign="top">  <strong>Pendulum: Variable Arm Length and Start Position</strong></td><td valign="top" style="width:10%; height:100%" class="gridcell"><div><span id="spanPercentRow1Col19">0 </span>points<br><span id="spanDescRow1Col19">Incomplete</span></div></td><td valign="top" style="width:10%; height:100%" class="gridcell"><div><span id="spanPercentRow1Col20">0.75 </span>points<br><span id="spanDescRow1Col20">An interface must be present to change the length of the arm, and the start position.</span></div></td></tr><tr>  <td class="rubricAchievementHeader" valign="top">  <strong>Pendulum: Sound Effects</strong></td><td valign="top" style="width:10%; height:100%" class="gridcell"><div><span id="spanPercentRow1Col21">0 </span>points<br><span id="spanDescRow1Col21">Incomplete</span></div></td><td valign="top" style="width:10%; height:100%" class="gridcell"><div><span id="spanPercentRow1Col22">0.75 </span>points<br><span id="spanDescRow1Col22">3D sound effects are implemented.</span></div></td></tr><tr>  <td class="rubricAchievementHeader" valign="top">  <strong>Coding Standards</strong></td><td valign="top" style="width:10%; height:100%" class="gridcell"><div><span id="spanPercentRow1Col23">0 </span>points<br><span id="spanDescRow1Col23">Incomplete</span></div></td><td valign="top" style="width:10%; height:100%" class="gridcell"><div><span id="spanPercentRow1Col24">2.25 </span>points<br><span id="spanDescRow1Col24">SET Coding Standards are adhered to. This includes appropriate use of headers and demonstrating good OOP techniques.</span></div></td></tr><tr>  <td class="rubricAchievementHeader" valign="top">  <strong>Installers</strong></td><td valign="top" style="width:10%; height:100%" class="gridcell"><div><span id="spanPercentRow1Col25">0 </span>points<br><span id="spanDescRow1Col25">Incomplete</span></div></td><td valign="top" style="width:10%; height:100%" class="gridcell"><div><span id="spanPercentRow1Col26">0.75 </span>points<br><span id="spanDescRow1Col26">The programs are deployed using one or more installers.</span></div></td></tr></table></div>
+            <br />
+
+            
+                <div id="viewControlsDivision">
+                    <button id="viewCloseButton" onclick="javascript:Close_Click(); return false;" >Close</button>&nbsp;&nbsp;
+                    <button id="viewPrintButton" onclick="ShowPrintDialog(); return false;" >Print</button>&nbsp;&nbsp;
+                </div>
+            
+            
+            
+
+            <div id="selectMenuDiv" style="visibility: hidden; position: absolute; font-size: 11px;">
+                <script type="text/javascript" language="javascript" src="/jscript/yahoo/yahoo-dom-event/yahoo-dom-event.js"></script>
+
+<script type="text/javascript" language="javascript" src="/jscript/yahoo/dragdrop/dragdrop-min.js"></script>
+
+<script type="text/javascript" language="javascript" src="/jscript/yahoo/container/container-min.js"></script>
+
+<script type='text/javascript'>var dlg_rubricWeightingsChanged;
+function rubricWeightingsChanged_init() {
+	dlg_rubricWeightingsChanged = new YAHOO.widget.Panel("rubricWeightingsChanged", {width:"450px",modal:true, fixedcenter:false, constraintoviewport:false, underlay:"shadow", close:false, visible:false, draggable:true});
+	dlg_rubricWeightingsChanged.render(document.body);
+	YAHOO.util.Event.addListener("close_rubricWeightingsChanged", "click", dlg_rubricWeightingsChanged.hide, dlg_rubricWeightingsChanged, true);
+	dlg_rubricWeightingsChanged.showEvent.subscribe(function() {
+document.getElementById('rubricWeightingsChanged_hider').style.display = 'block';
+})
+	dlg_rubricWeightingsChanged.hideEvent.subscribe(function() {
+document.getElementById('rubricWeightingsChanged_hider').style.display = 'none';
+})
+dlg_rubricWeightingsChanged.showEvent.subscribe(function() {dlg_rubricWeightingsChanged.cfg.setProperty('fixedcenter', true);
+dlg_rubricWeightingsChanged.cfg.setProperty('fixedcenter', false);
+});
+}
+YAHOO.util.Event.addListener(window, "load", rubricWeightingsChanged_init, window, true);</script><div id="rubricWeightingsChanged_hider" style="display:none">
+	<div id="rubricWeightingsChanged" style="width:450px;">
+		<div class="hd">
+			<table style="width:100%"><tr>
+			<td>Rubric Weightings Changed
+			</td>
+			<td align="right">
+				<img style="cursor:pointer;" src="/AngelThemes/icons/portal/remove.gif" alt="Close" id="close_rubricWeightingsChanged" />
+			</td></tr></table>
+	</div>
+	<div class="bd">
+		<!-- BEGIN BODY -->
+                    <div style="width: 450px; text-align:center">
+                        <div>
+                            <img id="rubricWeightingsChanged_MultipleDeleteWarnIcon" src="../../images/dlg/warning.gif" style="border-width:0px;" />
+                            <strong>Rubric weightings have changed</strong>
+                        </div>
+                        <br />
+                        <div>
+                            You have made changes to this rubric's weightings that will adjust the points awarded for currently graded submissions for all associated content items.
+                        </div>
+                        <br />
+                        <div>
+                            For submissions where criteria scores have been manually overridden, scores will be updated proportionately based on the new weightings.
+                        </div>
+                        <br />
+                        <div>
+                            Are you sure you want to continue?
+                        </div>
+                        <br />
+                        <div style="width: 100%; text-align: center;">
+                            <button type="button" onclick="ContinueWithSave()">
+                                Save rubric and adjust all graded submissions
+                            </button>
+                            <button type="button" onclick="Cancel()" style="width: 75px;">
+                                 Cancel 
+                            </button>
+                        </div>
+                    </div>
+                <!-- END BODY --></div>
+	</div></div>
+	
+            
+                <script type='text/javascript'>var dlg_printChoiceDialog;
+function printChoiceDialog_init() {
+	dlg_printChoiceDialog = new YAHOO.widget.Panel("printChoiceDialog", {width:"450px",modal:true, fixedcenter:false, constraintoviewport:false, underlay:"shadow", close:false, visible:false, draggable:true});
+	dlg_printChoiceDialog.render(document.body);
+	YAHOO.util.Event.addListener("close_printChoiceDialog", "click", dlg_printChoiceDialog.hide, dlg_printChoiceDialog, true);
+	dlg_printChoiceDialog.showEvent.subscribe(function() {
+document.getElementById('printChoiceDialog_hider').style.display = 'block';
+})
+	dlg_printChoiceDialog.hideEvent.subscribe(function() {
+document.getElementById('printChoiceDialog_hider').style.display = 'none';
+})
+dlg_printChoiceDialog.showEvent.subscribe(function() {dlg_printChoiceDialog.cfg.setProperty('fixedcenter', true);
+dlg_printChoiceDialog.cfg.setProperty('fixedcenter', false);
+});
+}
+YAHOO.util.Event.addListener(window, "load", printChoiceDialog_init, window, true);</script><div id="printChoiceDialog_hider" style="display:none">
+		<div id="printChoiceDialog" style="width:450px;">
+			<div class="hd">
+				<table style="width:100%"><tr>
+				<td>
+				</td>
+				<td align="right">
+					<img style="cursor:pointer;" src="/AngelThemes/icons/portal/remove.gif" alt="Close" id="close_printChoiceDialog" />
+				</td></tr></table>
+		</div>
+		<div class="bd">
+			<!-- BEGIN BODY -->
+                    <div style="width: 100%; text-align: center;">
+                        <table>
+                            <tr>
+                                <td style="width:5px"><input id="printHtmlRb" name="printChoice" type="radio" checked="checked" /></td>
+                                <td style="width:300px; text-align:left;">Print from HTML</td>
+                            </tr>
+                            <tr>
+                                <td style="width:5px"></td>
+                                <td style="width:300px; text-align:left;">Loads rubric in new window for printing</td>
+                            </tr>
+                            <tr>
+                                <td><br /></td>
+                            </tr>
+                            <tr>
+                                <td style="width:5px"><input id="printPdfRb" name="printChoice" type="radio" /></td>
+                                <td style="width:300px; text-align:left;">Print from PDF</td>
+                            </tr>
+                            <tr>
+                                <td style="width:5px"></td>
+                                <td style="width:300px; text-align:left;">Loads PDF of rubric for printing</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <p />
+                    <div style="text-align:center">
+                    <table>
+                        <tr>
+                            <td>
+                                <button type="button" id="printChoicePrintButton" onclick="Print_Clicked();">Print</button>
+                            </td>
+                            <td>
+                                <button type="button" id="printChoiceCancelButton" onclick="dlg_printChoiceDialog.hide()">Cancel</button>
+                            </td>
+                        </tr>
+                    </table>
+                    </div>
+                <!-- END BODY --></div>
+		</div></div>
+		
+            </div>
+            <div id="divEditCell" style="position:absolute; padding: 2px; z-index:999; display:none; border:solid 1px black; background-color:#E7EFFE; height:200px; width:450px;">
+                <input type="hidden" id="hidEditType" />
+                <input type="hidden" id="hidEditRow" />
+                <input type="hidden" id="hidEditCol" />
+                <strong>Cell Description:</strong>
+                <br />
+                <textarea id="txtDescription" style="height:100px; width:400px"></textarea>
+                <br />
+                <div id="divAlignStandards" style="float:left; display:none;">
+                    <a href="javascript:AlignStandards()">
+                        Align Standard(s)
+                    </a>
+                </div>
+                <div id="divAlignObjectives" style="float:left; display:none;">
+                    &nbsp;| <a href="javascript:AlignObjectives()">
+                        Align Objective(s)
+                    </a>
+                </div>
+                <div id="divCriteriaWeighting" style="float:left; display:none;">
+                    &nbsp;| <strong>Criterion Weighting % :</strong>
+                    <input type="text" id="txtCriterionWeighting" style="width:50px" />
+                </div>
+                <div id="divObjectiveWeighting" style="float:left; display:none;">
+                    <strong>Objective % :</strong>
+                    <input type="text" id="txtObjectiveWeighting" style="width:50px" />
+                </div>
+                <div style="clear:left">
+                    <button id="btnSave" onclick="javascript:SaveRubric(''); return false;">
+                        Save
+                    </button>
+                    <button id="Button2" onclick="javascript:SaveRubric('EditNext'); return false;">
+                        Save & Edit Next
+                    </button>
+                    <button id="Button3" onclick="javascript:Cancel(); return false;">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+            <script type='text/javascript'>
+                var courseType = 'COURSE';
+                var btnSaveRubric = document.getElementById("btnSaveRubric");
+            </script>
+        
+		
+<script type="text/javascript">
+//<![CDATA[
+Sys.Application.initialize();
+//]]>
+</script>
+</form>
+        
+    </div>
+</body>
+</html>
+
