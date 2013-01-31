@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pendulum", "Pendulum\Pendulum\Pendulum.csproj", "{0B6CE9E1-7B9D-4F4D-86CC-70620903BBCA}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "PendulumContent", "Pendulum\PendulumContent\PendulumContent.contentproj", "{56FC9241-31D9-43B5-951A-C5F91A62A7AA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0B6CE9E1-7B9D-4F4D-86CC-70620903BBCA}.Debug|x86.ActiveCfg = Debug|x86
+		{0B6CE9E1-7B9D-4F4D-86CC-70620903BBCA}.Debug|x86.Build.0 = Debug|x86
+		{0B6CE9E1-7B9D-4F4D-86CC-70620903BBCA}.Release|x86.ActiveCfg = Release|x86
+		{0B6CE9E1-7B9D-4F4D-86CC-70620903BBCA}.Release|x86.Build.0 = Release|x86
+		{56FC9241-31D9-43B5-951A-C5F91A62A7AA}.Debug|x86.ActiveCfg = Debug|x86
+		{56FC9241-31D9-43B5-951A-C5F91A62A7AA}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
