@@ -12,8 +12,7 @@ namespace Cards
         {
             double u1 = rand.NextDouble();
             double u2 = rand.NextDouble();
-            double randStdNormal = Math.Sqrt(-2.0 * Math.Log(u1)) *
-                         Math.Sin(2.0 * Math.PI * u2);
+            double randStdNormal = Math.Sqrt(-2.0 * Math.Log(u1)) * Math.Sin(2.0 * Math.PI * u2);
             double randNormal =
                          mean + stdDev * randStdNormal;
             return randNormal;
@@ -32,7 +31,7 @@ namespace Cards
 
         public static void OverhandShuffle<T>(this List<T> list)
         {
-            List<T> results = list.Select(t => t).ToList();
+            var results = list.Select(t => t).ToList();
             var copied = 0; 
             while (copied != list.Count)
             {
@@ -59,8 +58,7 @@ namespace Cards
 
             while (top.Count != 0 || bottom.Count != 0)
             {
-                int take;
-                take = Math.Abs((int) Rand.BoxMuller(0, 1)) + 1;
+                var take = Math.Abs((int) Rand.BoxMuller(0, 1)) + 1;
                 if (take > top.Count)
                     take = top.Count;
                 list.AddRange(Enumerable.Range(0, take).Select(i => top.Dequeue()));
