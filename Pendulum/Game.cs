@@ -10,6 +10,7 @@ using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using Microsoft.DirectX.DirectSound;
 using Timer = Pend.Timer;
 
 namespace Pend
@@ -119,7 +120,7 @@ namespace Pend
             sound = new Microsoft.DirectX.DirectSound.Device();
             sound.SetCooperativeLevel( this, Microsoft.DirectX.DirectSound.CooperativeLevel.Normal );
             wave = new Microsoft.DirectX.DirectSound.SecondaryBuffer("..\\..\\air_whoosh.wav", sound);
-            wave.Play(0, Microsoft.DirectX.DirectSound.BufferPlayFlags.Default);
+            wave.Play(0, Microsoft.DirectX.DirectSound.BufferPlayFlags.Looping);
         }
 
         // --------------------------------------------------------------------
@@ -275,6 +276,7 @@ namespace Pend
             base.OnLostFocus( e );
             Paused = true;
             this.Text = gametitle + " - Paused";
+            wave.Stop();
         }
 
        
@@ -293,10 +295,12 @@ namespace Pend
                 if (Paused)
                 {
                     this.Text = gametitle + " - Paused";
+                    wave.Stop();
                 }
                 else
                 {
                     this.Text = gametitle;
+                    wave.Play(0, BufferPlayFlags.Looping);
                 }
             }
 

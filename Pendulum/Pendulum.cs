@@ -14,7 +14,7 @@ namespace Pend
         private readonly SecondaryBuffer _sound;
         private readonly int _sWidth;
         private const double MaxAngle = .5;
-        private const float Length = 10;
+        private const float Length = 5;
 
         public Pendulum(Direct3D.Device g, Size gSize, Direct3D.Texture texture, SecondaryBuffer sound)
         {
@@ -23,7 +23,6 @@ namespace Pend
             _sprite = new Direct3D.Sprite(_graphics);
             _texture = texture;
             _sound = sound;
-            _sound.Play(0, BufferPlayFlags.Looping);
         }
 
         public void Move(Timer timer)
