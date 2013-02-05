@@ -176,9 +176,7 @@ namespace Pend
             // process the game only while it's not paused
             if( !paused )
             {
-                //TODO
                 sShip.Move(gametimer);
-
             }
             else
                 System.Threading.Thread.Sleep( 1 );
@@ -302,6 +300,22 @@ namespace Pend
                     this.Text = gametitle;
                     wave.Play(0, BufferPlayFlags.Looping);
                 }
+            }
+            else if (e.KeyCode == Keys.Up)
+            {
+                sShip.Length -= .1f;
+            }
+            else if (e.KeyCode == Keys.Down)
+            {
+                sShip.Length += .1f;
+            }
+            else if (e.KeyCode == Keys.Left)
+            {
+                sShip.MaxAngle -= .5;
+            }
+            else if (e.KeyCode == Keys.Right)
+            {
+                sShip.MaxAngle += .5;
             }
 
         }

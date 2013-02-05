@@ -13,8 +13,44 @@ namespace Pend
         private readonly Direct3D.Device _graphics;
         private readonly SecondaryBuffer _sound;
         private readonly int _sWidth;
-        private const double MaxAngle = .5;
-        private const float Length = 5;
+        private double _maxAngle = .5;
+        public double MaxAngle {
+            get { return _maxAngle * 180/Math.PI; }
+            set 
+            {
+                if (value > 45)
+                {
+                    _maxAngle = 45 * Math.PI / 180;
+                }
+                else if (value <= 0)
+                {
+                    _maxAngle = 0;
+                }
+                else
+                {
+                    _maxAngle = value * Math.PI / 180;
+                }
+            }
+        }
+        private float _length = 5;
+        public float Length {
+            get { return _length; }
+            set 
+            { 
+                if (value > 10)
+                {
+                    _length = 10;
+                }
+                else if (value < 1)
+                {
+                    _length = 1;
+                }
+                else
+                {
+                    _length = value;
+                }
+             }
+        }
 
         public Pendulum(Direct3D.Device g, Size gSize, Direct3D.Texture texture, SecondaryBuffer sound)
         {
@@ -27,13 +63,13 @@ namespace Pend
 
         public void Move(Timer timer)
         {
-            var rotation = (float) (MaxAngle*Math.Cos(Math.Sqrt(9.81/Length)*timer.Time()));
+            var rotation = (float)(_maxAngle * Math.Cos(Math.Sqrt(9.81 / _length) * timer.Time()));
             _sprite.Begin(Direct3D.SpriteFlags.AlphaBlend);
             Matrix tranz = 
             Matrix.Transformation2D(
                 new Vector2((float)(_sWidth / 2.0), 0.0f),          //scaling centre
                 0.0f,                                               //scaling ratio
-                new Vector2(Length / 5.0f, Length / 5.0f),          //scaling
+                new Vector2(_length / 5.0f, _length / 5.0f),        //scaling
                 new Vector2((float)(_sWidth / 2.0), 0),             //rotation centre
                 rotation,                                           //rotation
                 new Vector2(0.0f, 0.0f));                           //translation
@@ -41,9 +77,16 @@ namespace Pend
             _sprite.Transform = tranz;
             _sprite.Draw(_texture, Rectangle.Empty, new Vector3(50, 0.0f, 0.0f), new Vector3((float) (_sWidth/2.0), 0, 0.0f), Color.White);
             _sprite.End();
-
-            _sound.Pan = -(int) (10000 * (float)((rotation / MaxAngle) * .5));
-            _sound.Volume = (int) (-1000 * (Math.Abs(rotation)/(MaxAngle)));
+            if (_maxAngle == 0.0)
+            {
+                _sound.Pan = -10000;
+                _sound.Volume = -1000;
+            }
+            else
+            {
+                _sound.Pan = -(int)(10000 * (float)((rotation / _maxAngle) * .5));
+                _sound.Volume = (int)(-1000 * (Math.Abs(rotation) / (_maxAngle)));
+            }
         }
     }
 }
