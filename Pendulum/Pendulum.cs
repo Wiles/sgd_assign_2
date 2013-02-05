@@ -76,10 +76,10 @@ namespace Pend
 
             _sprite.Draw(_texture, Rectangle.Empty, new Vector3(50, 0.0f, 0.0f), new Vector3((float) (_sWidth/2.0), 0, 0.0f), Color.White);
             _sprite.End();
-            if (Math.Abs(_maxAngle - 0.0) < 0.01)
+            if (Math.Abs(_maxAngle - 0.0) < 0.001)
             {
-                _sound.Pan = -10000;
-                _sound.Volume = -1000;
+                _sound.Pan = 0;
+                _sound.Volume = 0;
             }
             else
             {
