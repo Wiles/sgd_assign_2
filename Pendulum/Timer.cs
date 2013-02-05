@@ -14,10 +14,10 @@ namespace Pend
         // --------------------------------------------------------------------
         // variables
         // --------------------------------------------------------------------
-        float starttime;    // absolute time when timer was last reset
-        float pausetime;    // absolute time when timer was paused
-        float elapsedtime;  // timer time when last Elapsed() call was made
-        bool paused;        // is timer paused?
+        private float _starttime;    // absolute time when timer was last reset
+        private float _pausetime;    // absolute time when timer was paused
+        private float _elapsedtime;  // timer time when last Elapsed() call was made
+        private bool _paused;        // is timer paused?
 
 
         // --------------------------------------------------------------------
@@ -34,20 +34,20 @@ namespace Pend
         public Timer()
 		{
             // reset the start time to current absolute time
-			this.starttime = Now();
-            paused = false;
+			_starttime = Now();
+            _paused = false;
 
             // reset elapsed time to 0
-            this.elapsedtime = 0.0f;
+            _elapsedtime = 0.0f;
         }
 
 
         // --------------------------------------------------------------------
         // Reset the timer to a specific time value
         // --------------------------------------------------------------------
-        public void Reset( float p_time )
+        public void Reset( float pTime )
         {
-            this.starttime = Now() - p_time;
+            _starttime = Now() - pTime;
         }
 
 
@@ -56,7 +56,7 @@ namespace Pend
         // --------------------------------------------------------------------
         public void Reset()
         {
-            this.Reset( 0.0f );
+            Reset( 0.0f );
         }
 
 
@@ -66,12 +66,11 @@ namespace Pend
         public float Time()
         {
             // if paused, return time difference from when timer was paused
-            if( this.paused )
-                return this.pausetime - this.starttime;
+            if( _paused )
+                return _pausetime - _starttime;
 
             // if not, then return time normally
-            else
-                return Now() - this.starttime;
+            return Now() - _starttime;
         }
 
 
@@ -81,8 +80,8 @@ namespace Pend
         public float Elapsed()
         {
             float now = Time();
-            float elapsed = now - this.elapsedtime;
-            this.elapsedtime = now;
+            float elapsed = now - _elapsedtime;
+            _elapsedtime = now;
             return elapsed;
         }
 
@@ -93,10 +92,10 @@ namespace Pend
         public void Pause()
         {
             // make sure timer isn't already paused
-            if( !this.paused )
+            if( !_paused )
             {
-                this.paused = true;
-                this.pausetime = Now();
+                _paused = true;
+                _pausetime = Now();
             }
         }
 
@@ -107,10 +106,10 @@ namespace Pend
         public void Unpause()
         {
             // make sure timer isn't already unpaused
-            if( this.paused )
+            if( _paused )
             {
-                this.paused = false;
-                this.starttime += Now() - this.pausetime;
+                _paused = false;
+                _starttime += Now() - _pausetime;
             }
         }
     }

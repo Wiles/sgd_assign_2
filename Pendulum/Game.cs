@@ -10,8 +10,9 @@ using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using Microsoft.DirectX.Direct3D;
 using Microsoft.DirectX.DirectSound;
-using Timer = Pend.Timer;
+using Device = Microsoft.DirectX.DirectSound.Device;
 
 namespace Pend
 {
@@ -23,43 +24,47 @@ namespace Pend
         // --------------------------------------------------------------------
         // static variables
         // --------------------------------------------------------------------
-        static string gametitle  = "Pendulum";
-        static int screenwidth   = 640;
-        static int screenheight  = 480;
-        static bool windowed     = true;
-        static bool graphicslost = false;
-        static Timer gametimer   = null;
-        static bool paused       = false;
+        private const string Gametitle = "Pendulum";
+        private const int Screenwidth = 640;
+        private const int Screenheight = 480;
+        private static bool _graphicslost;
+        private static Timer _gametimer;
+        private static bool _paused;
         
         // --------------------------------------------------------------------
         // Devices
         // --------------------------------------------------------------------
-        Microsoft.DirectX.Direct3D.Device graphics        = null;
-        Microsoft.DirectX.DirectSound.Device sound        = null;
-        Microsoft.DirectX.DirectInput.Device keyboard     = null;
-        Microsoft.DirectX.DirectInput.Device mouse        = null;
-        Microsoft.DirectX.DirectInput.Device gameinput    = null;
+        private Microsoft.DirectX.Direct3D.Device _graphics;
+        private Device _sound;
+        private Microsoft.DirectX.DirectInput.Device _keyboard;
+        private Microsoft.DirectX.DirectInput.Device _mouse;
 
         //
         // Sprites
         //
-        Pend.Pendulum sShip = null;
+        private Pendulum _pendulum;
 
         //
         // resources
         //
-        Microsoft.DirectX.DirectSound.SecondaryBuffer wave = null;
+        private SecondaryBuffer _wave;
 
         // --------------------------------------------------------------------
         // Game constructor
         // --------------------------------------------------------------------
         public Game()
         {
-            this.ClientSize = new System.Drawing.Size( screenwidth, screenheight );
-            this.Text = gametitle;
-            gametimer = new Timer();
+            ClientSize = new Size( Screenwidth, Screenheight );
+            Text = Gametitle;
+            _gametimer = new Timer();
         }
-        
+
+        public override sealed string Text
+        {
+            get { return base.Text; }
+            set { base.Text = value; }
+        }
+
 
         // --------------------------------------------------------------------
         // Initialize the Direct3D Graphics subsystem
@@ -67,46 +72,27 @@ namespace Pend
         public void InitializeGraphics()
         {
             // set up the parameters
-            Microsoft.DirectX.Direct3D.PresentParameters p = new Microsoft.DirectX.Direct3D.PresentParameters();
-            p.SwapEffect = Microsoft.DirectX.Direct3D.SwapEffect.Discard;
-
-            
-            if( windowed == true )
-            {
-                p.Windowed = true;
-            }
-            else
-            {
-                // get the current display mode:
-                Microsoft.DirectX.Direct3D.Format current = Microsoft.DirectX.Direct3D.Manager.Adapters[0].CurrentDisplayMode.Format;
-            	
-                // set up a fullscreen display device
-                p.Windowed = false;                 // fullscreen
-                p.BackBufferCount = 1;              // one back buffer
-                p.BackBufferFormat = current;       // use current format
-                p.BackBufferWidth = screenwidth;
-                p.BackBufferHeight = screenheight;
-            }
+            var p = new PresentParameters {SwapEffect = SwapEffect.Discard, Windowed = true};
 
             // create a new device:
-            graphics = new Microsoft.DirectX.Direct3D.Device( 
+            _graphics = new Microsoft.DirectX.Direct3D.Device( 
                 0, 
-                Microsoft.DirectX.Direct3D.DeviceType.Hardware, 
+                DeviceType.Hardware, 
                 this, 
-                Microsoft.DirectX.Direct3D.CreateFlags.SoftwareVertexProcessing, 
+                CreateFlags.SoftwareVertexProcessing, 
                 p );
 
 
             // Setup the event handlers for the device
-            graphics.DeviceLost     += new EventHandler( this.InvalidateDeviceObjects );
-            graphics.DeviceReset    += new EventHandler( this.RestoreDeviceObjects );
-            graphics.Disposing      += new EventHandler( this.DeleteDeviceObjects );
-            graphics.DeviceResizing += new CancelEventHandler( this.EnvironmentResizing );
+            _graphics.DeviceLost     += InvalidateDeviceObjects;
+            _graphics.DeviceReset    += RestoreDeviceObjects;
+            _graphics.Disposing      += DeleteDeviceObjects;
+            _graphics.DeviceResizing += EnvironmentResizing;
 
             // Set up the local sprites
-            Microsoft.DirectX.Direct3D.Texture texture = Microsoft.DirectX.Direct3D.TextureLoader.FromFile(graphics, "..\\..\\Pendulum.png", 100, 300, 0, 0, Microsoft.DirectX.Direct3D.Format.Unknown, Microsoft.DirectX.Direct3D.Pool.Managed,
-                Microsoft.DirectX.Direct3D.Filter.Linear, Microsoft.DirectX.Direct3D.Filter.Linear, Color.White.ToArgb());
-            sShip = new Pend.Pendulum(graphics, this.ClientSize, texture, wave);
+            var texture = TextureLoader.FromFile(_graphics, "..\\..\\Pendulum.png", 100, 300, 0, 0, Format.Unknown, Pool.Managed,
+                Filter.Linear, Filter.Linear, Color.White.ToArgb());
+            _pendulum = new Pendulum(_graphics, ClientSize, texture, _wave);
 
         }
 
@@ -117,10 +103,10 @@ namespace Pend
         public void InitializeSound()
         {
             // set up a device
-            sound = new Microsoft.DirectX.DirectSound.Device();
-            sound.SetCooperativeLevel( this, Microsoft.DirectX.DirectSound.CooperativeLevel.Normal );
-            wave = new Microsoft.DirectX.DirectSound.SecondaryBuffer("..\\..\\air_whoosh.wav", sound);
-            wave.Play(0, Microsoft.DirectX.DirectSound.BufferPlayFlags.Looping);
+            _sound = new Device();
+            _sound.SetCooperativeLevel( this, CooperativeLevel.Normal );
+            _wave = new SecondaryBuffer("..\\..\\air_whoosh.wav", _sound);
+            _wave.Play(0, BufferPlayFlags.Looping);
         }
 
         // --------------------------------------------------------------------
@@ -129,20 +115,20 @@ namespace Pend
         public void InitializeInput()
         {
             // set up the keyboard
-            keyboard = new Microsoft.DirectX.DirectInput.Device( Microsoft.DirectX.DirectInput.SystemGuid.Keyboard );
-            keyboard.SetCooperativeLevel( 
+            _keyboard = new Microsoft.DirectX.DirectInput.Device( Microsoft.DirectX.DirectInput.SystemGuid.Keyboard );
+            _keyboard.SetCooperativeLevel( 
                 this, 
                 Microsoft.DirectX.DirectInput.CooperativeLevelFlags.Background |
                 Microsoft.DirectX.DirectInput.CooperativeLevelFlags.NonExclusive );
-            keyboard.Acquire();
+            _keyboard.Acquire();
 
             // set up the mouse
-            mouse = new Microsoft.DirectX.DirectInput.Device( Microsoft.DirectX.DirectInput.SystemGuid.Mouse );
-            mouse.SetCooperativeLevel( 
+            _mouse = new Microsoft.DirectX.DirectInput.Device( Microsoft.DirectX.DirectInput.SystemGuid.Mouse );
+            _mouse.SetCooperativeLevel( 
                 this, 
                 Microsoft.DirectX.DirectInput.CooperativeLevelFlags.Background |
                 Microsoft.DirectX.DirectInput.CooperativeLevelFlags.NonExclusive );
-            mouse.Acquire();
+            _mouse.Acquire();
 
 
         }
@@ -174,9 +160,9 @@ namespace Pend
         protected virtual void ProcessFrame()
         {
             // process the game only while it's not paused
-            if( !paused )
+            if( !_paused )
             {
-                sShip.Move(gametimer);
+                _pendulum.Move(_gametimer);
             }
             else
                 System.Threading.Thread.Sleep( 1 );
@@ -189,51 +175,51 @@ namespace Pend
         // --------------------------------------------------------------------
         protected virtual void Render()
         {
-            if( graphics != null ) 
+            if( _graphics != null ) 
             {
                 // check to see if the device has been lost. If so, try to get
                 // it back.
-                if( graphicslost )
+                if( _graphicslost )
                 {
                     try
                     {
-                        graphics.TestCooperativeLevel();
+                        _graphics.TestCooperativeLevel();
                     }
-                    catch( Microsoft.DirectX.Direct3D.DeviceLostException )
+                    catch( DeviceLostException )
                     {
                         // device cannot be reaquired yet, just return
                         return;
                     }
-                    catch( Microsoft.DirectX.Direct3D.DeviceNotResetException )
+                    catch( DeviceNotResetException )
                     {
                         // device has not been reset, but it can be reaquired now
 
-                        graphics.Reset( graphics.PresentationParameters );
+                        _graphics.Reset( _graphics.PresentationParameters );
                     }
-                    graphicslost = false;
+                    _graphicslost = false;
                 }
 
 
                 try
                 {
 
-                    graphics.Clear( Microsoft.DirectX.Direct3D.ClearFlags.Target, Color.Blue, 1.0f, 0 );
+                    _graphics.Clear( ClearFlags.Target, Color.Blue, 1.0f, 0 );
 
-                    graphics.BeginScene();
+                    _graphics.BeginScene();
 
-                    if (sShip != null)
+                    if (_pendulum != null)
                     {
-                        sShip.Move(gametimer);
+                        _pendulum.Move(_gametimer);
                     }
             
-                    graphics.EndScene();
-                    graphics.Present();
+                    _graphics.EndScene();
+                    _graphics.Present();
                 }
 
                 // device has been lost, and it cannot be re-initialized yet
-                catch( Microsoft.DirectX.Direct3D.DeviceLostException )
+                catch( DeviceLostException )
                 {
-                    graphicslost = true;
+                    _graphicslost = true;
                 }
             }
         }
@@ -246,10 +232,10 @@ namespace Pend
         public void Run()
         {
             // reset the game timer
-            gametimer.Reset();
+            _gametimer.Reset();
 
             // loop while form is valid
-            while( this.Created )
+            while( Created )
             {
                 if (!Paused)
                 {
@@ -273,8 +259,8 @@ namespace Pend
         {
             base.OnLostFocus( e );
             Paused = true;
-            this.Text = gametitle + " - Paused";
-            wave.Stop();
+            Text = Gametitle + " - Paused";
+            _wave.Stop();
         }
 
        
@@ -282,40 +268,40 @@ namespace Pend
         {
             //base.OnKeyDown( e );
 
-            if (e.KeyCode == System.Windows.Forms.Keys.Escape)
+            if (e.KeyCode == Keys.Escape)
             {
-                this.Close();
+                Close();
             }
 
-            if (e.KeyCode == System.Windows.Forms.Keys.P)
+            if (e.KeyCode == Keys.P)
             {
                 Paused = !Paused;
                 if (Paused)
                 {
-                    this.Text = gametitle + " - Paused";
-                    wave.Stop();
+                    Text = Gametitle + " - Paused";
+                    _wave.Stop();
                 }
                 else
                 {
-                    this.Text = gametitle;
-                    wave.Play(0, BufferPlayFlags.Looping);
+                    Text = Gametitle;
+                    _wave.Play(0, BufferPlayFlags.Looping);
                 }
             }
             else if (e.KeyCode == Keys.Up)
             {
-                sShip.Length -= .1f;
+                _pendulum.Length -= .1f;
             }
             else if (e.KeyCode == Keys.Down)
             {
-                sShip.Length += .1f;
+                _pendulum.Length += .1f;
             }
             else if (e.KeyCode == Keys.Left)
             {
-                sShip.MaxAngle -= .5;
+                _pendulum.MaxAngle -= .5;
             }
             else if (e.KeyCode == Keys.Right)
             {
-                sShip.MaxAngle += .5;
+                _pendulum.MaxAngle += .5;
             }
 
         }
@@ -328,21 +314,21 @@ namespace Pend
         // --------------------------------------------------------------------
         public bool Paused
         {
-            get { return paused; }
+            get { return _paused; }
             set 
             {
                 // pause the game
-                if( value == true && paused == false )
+                if( value && _paused == false )
                 {
-                    gametimer.Pause();
-                    paused = true;
+                    _gametimer.Pause();
+                    _paused = true;
                 }
 
                 // unpause the game
-                if( value == false && paused == true )
+                if( value == false && _paused )
                 {
-                    gametimer.Unpause();
-                    paused = false;
+                    _gametimer.Unpause();
+                    _paused = false;
                 }
             }
         }
@@ -353,10 +339,9 @@ namespace Pend
         // --------------------------------------------------------------------
         static void Main()
         {
-            Game game;
             try
             {
-                game = new Game();
+                var game = new Game();
                 game.InitializeSound();
                 game.InitializeGraphics();
                 game.InitializeInput();

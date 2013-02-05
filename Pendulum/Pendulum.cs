@@ -65,7 +65,7 @@ namespace Pend
         {
             var rotation = (float)(_maxAngle * Math.Cos(Math.Sqrt(9.81 / _length) * timer.Time()));
             _sprite.Begin(Direct3D.SpriteFlags.AlphaBlend);
-            Matrix tranz = 
+            _sprite.Transform = 
             Matrix.Transformation2D(
                 new Vector2((float)(_sWidth / 2.0), 0.0f),          //scaling centre
                 0.0f,                                               //scaling ratio
@@ -74,10 +74,9 @@ namespace Pend
                 rotation,                                           //rotation
                 new Vector2(0.0f, 0.0f));                           //translation
 
-            _sprite.Transform = tranz;
             _sprite.Draw(_texture, Rectangle.Empty, new Vector3(50, 0.0f, 0.0f), new Vector3((float) (_sWidth/2.0), 0, 0.0f), Color.White);
             _sprite.End();
-            if (_maxAngle == 0.0)
+            if (Math.Abs(_maxAngle - 0.0) < 0.01)
             {
                 _sound.Pan = -10000;
                 _sound.Volume = -1000;
