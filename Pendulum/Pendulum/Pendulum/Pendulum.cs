@@ -41,7 +41,7 @@ namespace Pendulum
 
         public void Update(GameTime gameTime)
         {
-            _rotation = (float)(_maxAngle * Math.Cos(Math.Sqrt(9.81 / 50) * gameTime.TotalGameTime.TotalSeconds));
+            _rotation = (float)(_maxAngle * Math.Cos(Math.Sqrt(9.81 / 1) * gameTime.TotalGameTime.TotalSeconds));
             
             _whoosh.Pan = -(float)((_rotation/_maxAngle) * .5);
         }

@@ -39,16 +39,16 @@ namespace Pendulum
         /// all of your content.
         /// </summary>
         protected override void LoadContent()
-        {
+        {   
             // Create a new SpriteBatch, which can be used to draw textures.
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             _pendulum.Initialize(Content.Load<Texture2D>("pendulum"), new Vector2(GraphicsDevice.Viewport.TitleSafeArea.X +
                                              + GraphicsDevice.Viewport.TitleSafeArea.Width / 2,
                                                 GraphicsDevice.Viewport.TitleSafeArea.Y
-                                             + GraphicsDevice.Viewport.TitleSafeArea.Height / 2),
+                                             + GraphicsDevice.Viewport.TitleSafeArea.Height / 2 ),
 
             Content.Load<SoundEffect>("air_whoosh"),
-            (float)(180 * Math.PI/180));
+            (float)(15 * Math.PI/180));
         }
 
         /// <summary>
