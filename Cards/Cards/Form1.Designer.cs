@@ -33,13 +33,15 @@
             this.btn_reset = new System.Windows.Forms.Button();
             this.btn_shuffle = new System.Windows.Forms.Button();
             this.btn_riffle = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lb_rfactor = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lb_items
             // 
-            this.lb_items.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lb_items.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lb_items.FormattingEnabled = true;
             this.lb_items.Location = new System.Drawing.Point(13, 13);
             this.lb_items.Name = "lb_items";
@@ -72,9 +74,9 @@
             // btn_shuffle
             // 
             this.btn_shuffle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_shuffle.Location = new System.Drawing.Point(267, 72);
+            this.btn_shuffle.Location = new System.Drawing.Point(266, 71);
             this.btn_shuffle.Name = "btn_shuffle";
-            this.btn_shuffle.Size = new System.Drawing.Size(95, 23);
+            this.btn_shuffle.Size = new System.Drawing.Size(96, 23);
             this.btn_shuffle.TabIndex = 3;
             this.btn_shuffle.Text = "Shuffle";
             this.btn_shuffle.UseVisualStyleBackColor = true;
@@ -83,19 +85,41 @@
             // btn_riffle
             // 
             this.btn_riffle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_riffle.Location = new System.Drawing.Point(267, 102);
+            this.btn_riffle.Location = new System.Drawing.Point(266, 100);
             this.btn_riffle.Name = "btn_riffle";
-            this.btn_riffle.Size = new System.Drawing.Size(95, 23);
+            this.btn_riffle.Size = new System.Drawing.Size(96, 23);
             this.btn_riffle.TabIndex = 4;
             this.btn_riffle.Text = "Riffle";
             this.btn_riffle.UseVisualStyleBackColor = true;
             this.btn_riffle.Click += new System.EventHandler(this.btn_riffle_Click);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(266, 126);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(48, 13);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "RFactor:";
+            // 
+            // lb_rfactor
+            // 
+            this.lb_rfactor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lb_rfactor.AutoSize = true;
+            this.lb_rfactor.Location = new System.Drawing.Point(320, 126);
+            this.lb_rfactor.Name = "lb_rfactor";
+            this.lb_rfactor.Size = new System.Drawing.Size(22, 13);
+            this.lb_rfactor.TabIndex = 6;
+            this.lb_rfactor.Text = "0.0";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(374, 261);
+            this.Controls.Add(this.lb_rfactor);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btn_riffle);
             this.Controls.Add(this.btn_shuffle);
             this.Controls.Add(this.btn_reset);
@@ -104,6 +128,7 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -114,6 +139,8 @@
         private System.Windows.Forms.Button btn_reset;
         private System.Windows.Forms.Button btn_shuffle;
         private System.Windows.Forms.Button btn_riffle;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lb_rfactor;
     }
 }
 

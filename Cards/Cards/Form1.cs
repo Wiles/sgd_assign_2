@@ -2,16 +2,27 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using Cards;
 
 namespace Cards
 {
     public partial class Form1 : Form
     {
-        private List<int> cards = new List<int>(); 
+        private readonly List<int> _unshuffled = Enumerable.Range(0, 52).ToList();
+        private List<int> _cards = new List<int>();
+        private readonly int _knuthRFactor;
         public Form1()
         {
             InitializeComponent();
+            Reset();
+
+            var knuth = 0;
+
+            for (var i = 0; i < 10000; ++i)
+            {
+                _cards.Knuth();
+                knuth += RFactor(_unshuffled, _cards);
+            }
+            _knuthRFactor = knuth/10000;
             Reset();
         }
 
@@ -22,7 +33,8 @@ namespace Cards
 
         private void btn_knuth_Click(object sender, EventArgs e)
         {
-            cards.Knuth();
+            _cards.Knuth();
+            lb_rfactor.Text = String.Format("{0:0.00}", RFactor(_unshuffled, _cards) / (double)_knuthRFactor);
             UpdateListBox();
         }
 
@@ -33,11 +45,9 @@ namespace Cards
 
         private void Reset()
         {
-            cards.Clear();
-            foreach (var i in Enumerable.Range(1, 52))
-            {
-                cards.Add(i);
-            }
+            _cards.Clear();
+            _cards = _unshuffled.Select(i => i).ToList();
+            lb_rfactor.Text = String.Format("{0:0.00}", RFactor(_unshuffled, _cards) / (double)_knuthRFactor);
             UpdateListBox();
         }
 
@@ -45,9 +55,9 @@ namespace Cards
         {
             lb_items.BeginUpdate();
             lb_items.Items.Clear();
-            foreach (var i in cards)
+            foreach (var i in _cards)
             {
-                lb_items.Items.Add(i);
+                lb_items.Items.Add(i + 1);
             }
             lb_items.EndUpdate();
             
@@ -55,16 +65,33 @@ namespace Cards
 
         private void btn_shuffle_Click(object sender, EventArgs e)
         {
-            cards.OverhandShuffle();
+            _cards.OverhandShuffle();
+            lb_rfactor.Text = String.Format("{0:0.00}", RFactor(_unshuffled, _cards) / (double)_knuthRFactor);
             UpdateListBox();
-
         }
 
         private void btn_riffle_Click(object sender, EventArgs e)
         {
-
-            cards.Riffle();
+            _cards.Riffle();
+            lb_rfactor.Text = String.Format("{0:0.00}", RFactor(_unshuffled, _cards) / (double)_knuthRFactor);
             UpdateListBox();
+        }
+
+        private int RFactor(IList<int> original, IList<int> shuffled)
+        {
+            var rfactor = 0;
+            for (int i = 0; i < original.Count; ++i)
+            {
+                var origin = shuffled.IndexOf(original[i]);
+                var next = shuffled.IndexOf(original[(i + 1)%52]);
+                var diff = Math.Abs(origin - next);
+                if (diff > original.Count/2)
+                {
+                    diff = original.Count - diff;
+                }
+                rfactor += diff;
+            }
+            return rfactor - 52;
         }
     }
 }

@@ -50,7 +50,7 @@ namespace Cards
 
         public static void Riffle<T>(this List<T> list)
         {
-            var half = (int)Rand.BoxMuller(26, 2);
+            var half = (int)Rand.BoxMuller(26, 3);
             var top = new Queue<T>(Enumerable.Range(0, half).Select(i => list[i]).ToList());
             var bottom = new Queue<T>(Enumerable.Range(half, list.Count - half).Select(i => list[i]).ToList());
 
@@ -62,7 +62,7 @@ namespace Cards
                 if (take > top.Count)
                     take = top.Count;
                 list.AddRange(Enumerable.Range(0, take).Select(i => top.Dequeue()));
-                take = Math.Abs((int)Rand.BoxMuller(0, 1)) + 1;
+                take = Math.Abs((int)Rand.BoxMuller(0, 1.5)) + 1;
                 if (take > bottom.Count)
                     take = bottom.Count;
                 list.AddRange(Enumerable.Range(0, take).Select(i => bottom.Dequeue()));
