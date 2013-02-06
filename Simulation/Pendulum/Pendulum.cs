@@ -1,3 +1,10 @@
+//File:     Pendulum.cs
+//Name:     Samuel Lewis (5821103)
+//Date:     02/01/2013
+//Class:    Simulation and Game Development
+//Ass:      2
+//
+//Desc:     Represents the pendulum sprite
 using System;
 using System.Drawing;
 using Microsoft.DirectX;
@@ -6,14 +13,24 @@ using Direct3D = Microsoft.DirectX.Direct3D;
 
 namespace Pend
 {
+    /// <summary>
+    /// Displays a swinging pendulum over time
+    /// </summary>
     class Pendulum
     {
         private readonly Direct3D.Sprite _sprite;
         private readonly Direct3D.Texture _texture;
         private readonly Direct3D.Device _graphics;
+
         private readonly SecondaryBuffer _sound;
         private readonly int _sWidth;
-        private double _maxAngle = .5;
+        private double _maxAngle = 22.5 * Math.PI / 180;
+        /// <summary>
+        /// Gets or sets the max angle in degrees. min 0, Max 45.
+        /// </summary>
+        /// <value>
+        /// The max angle in degrees.
+        /// </value>
         public double MaxAngle {
             get { return _maxAngle * 180/Math.PI; }
             set 
@@ -32,7 +49,14 @@ namespace Pend
                 }
             }
         }
+
         private float _length = 5;
+        /// <summary>
+        /// Gets or sets the length in metre. Min 1, max 10.
+        /// </summary>
+        /// <value>
+        /// The length in metre.
+        /// </value>
         public float Length {
             get { return _length; }
             set 
@@ -52,6 +76,13 @@ namespace Pend
              }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Pendulum"/> class.
+        /// </summary>
+        /// <param name="g">The graphic device to draw the pendulum to</param>
+        /// <param name="gSize">Size of graphic display</param>
+        /// <param name="texture">The texture to dispaly as the pendulum</param>
+        /// <param name="sound">The sound to play as the pendulum swings</param>
         public Pendulum(Direct3D.Device g, Size gSize, Direct3D.Texture texture, SecondaryBuffer sound)
         {
             _sWidth = gSize.Width;
@@ -61,6 +92,10 @@ namespace Pend
             _sound = sound;
         }
 
+        /// <summary>
+        /// Move the pendulum
+        /// </summary>
+        /// <param name="timer">The timer.</param>
         public void Move(Timer timer)
         {
             var rotation = (float)(_maxAngle * Math.Cos(Math.Sqrt(9.81 / _length) * timer.Time()));

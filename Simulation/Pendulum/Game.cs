@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using Microsoft.DirectX.Direct3D;
 using Microsoft.DirectX.DirectSound;
 using Device = Microsoft.DirectX.DirectSound.Device;
+using Font = Microsoft.DirectX.Direct3D.Font;
 
 namespace Pend
 {
@@ -30,6 +31,7 @@ namespace Pend
         private static bool _graphicslost;
         private static Timer _gametimer;
         private static bool _paused;
+        private Font _font;
         
         // --------------------------------------------------------------------
         // Devices
@@ -93,6 +95,8 @@ namespace Pend
             var texture = TextureLoader.FromFile(_graphics, "..\\..\\Pendulum.png", 100, 300, 0, 0, Format.Unknown, Pool.Managed,
                 Filter.Linear, Filter.Linear, Color.White.ToArgb());
             _pendulum = new Pendulum(_graphics, ClientSize, texture, _wave);
+
+            _font = new Font(_graphics, new System.Drawing.Font("courier new", 12f, FontStyle.Regular));
 
         }
 
@@ -210,6 +214,8 @@ namespace Pend
                     if (_pendulum != null)
                     {
                         _pendulum.Move(_gametimer);
+                        _font.DrawText(null, string.Format(" Angle: {0:0.0}", _pendulum.MaxAngle), new Point(10, 20), Color.White);
+                        _font.DrawText(null, string.Format("Length: {0:0.0}", _pendulum.Length), new Point(10, 40), Color.White);
                     }
             
                     _graphics.EndScene();

@@ -1,13 +1,35 @@
-﻿using System;
+﻿//File:     Randomizations.cs
+//Name:     Samuel Lewis (5821103)
+//Date:     02/01/2013
+//Class:    Simulation and Game Development
+//Ass:      2
+//
+//Desc:     Randomization and shuffling extension methods 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Cards
 {
+    /// <summary>
+    /// Contains extension methods for randomization and shuffling
+    /// </summary>
     public static class Randomizations
     {
+        /// <summary>
+        /// The instance of random to use
+        /// </summary>
         private static readonly Random Rand = new Random();
 
+        /// <summary>
+        /// Returns a random number using the box muller algorithm.
+        /// 
+        /// This allows a random number to be generated to following a standard deviation around the mean
+        /// </summary>
+        /// <param name="rand">The rand.</param>
+        /// <param name="mean">The mean.</param>
+        /// <param name="stdDev">The standard deviation</param>
+        /// <returns>random number</returns>
         public static double BoxMuller(this Random rand, double mean, double stdDev)
         {
             double u1 = rand.NextDouble();
@@ -18,6 +40,11 @@ namespace Cards
             return randNormal;
         }
 
+        /// <summary>
+        /// Shuffles the deck using the knuth shuffle algorithm
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list">The list.</param>
         public static void Knuth<T>(this List<T> list)
         {
             for (var i = list.Count - 1; i > 0; --i)
@@ -29,6 +56,11 @@ namespace Cards
             }
         }
 
+        /// <summary>
+        /// Overhand shuffles the list
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list">The list.</param>
         public static void OverhandShuffle<T>(this List<T> list)
         {
             var results = list.Select(t => t).ToList();
@@ -48,6 +80,11 @@ namespace Cards
             }
         }
 
+        /// <summary>
+        /// Riffle shuffles the list
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list">The list.</param>
         public static void Riffle<T>(this List<T> list)
         {
             var half = (int)Rand.BoxMuller(26, 3);
